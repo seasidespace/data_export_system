@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: raw
+    database: MARKET_ANALYTICS
+    schema: RAW
+    tables:
+      - name: raw_intraday
+        description: "Raw intraday JSON from Alpha Vantage TIME_SERIES_INTRADAY"
+      - name: raw_crypto_daily
+        description: "Raw daily crypto JSON from Alpha Vantage DIGITAL_CURRENCY_DAILY"
+      - name: raw_overview
+        description: "Raw company fundamentals from Alpha Vantage OVERVIEW"
+
+models:
+  - name: stg_intraday
+    description: "Flattened intraday price data with typed columns"
+    columns:
+      - name: symbol
+        tests:
+          - not_null
+      - name: ts
+        tests:
+          - not_null

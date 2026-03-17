@@ -1,0 +1,24 @@
+name: market_analytics
+version: "0.1.0"
+config-version: 2
+
+profile: market_analytics
+
+model-paths: ["models"]
+test-paths: ["tests"]
+analysis-paths: ["analyses"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  market_analytics:
+    staging:
+      +materialized: view
+      +schema: transformed
+    marts:
+      +materialized: table
+      +schema: transformed
